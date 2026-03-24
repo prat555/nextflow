@@ -1,13 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const companies = [
-  { name: "Lego", abbr: "LEGO" },
-  { name: "Samsung", abbr: "SAMSUNG" },
-  { name: "Nike", abbr: "NIKE" },
-  { name: "Microsoft", abbr: "MSFT" },
-  { name: "Shopify", abbr: "SHOPIFY" },
+  { name: "Lego", abbr: "LEGO", logo: "https://cdn.worldvectorlogo.com/logos/lego-4.svg" },
+  { name: "Samsung", abbr: "SAMSUNG", logo: "https://cdn.worldvectorlogo.com/logos/samsung-4.svg" },
+  { name: "Nike", abbr: "NIKE", logo: "https://cdn.worldvectorlogo.com/logos/nike-4-1.svg" },
+  { name: "Microsoft", abbr: "MSFT", logo: "https://cdn.worldvectorlogo.com/logos/microsoft-6.svg" },
+  { name: "Shopify", abbr: "SHOPIFY", logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg" },
 ]
 
 export function LogoMarquee() {
@@ -27,8 +28,16 @@ export function LogoMarquee() {
             {[...companies, ...companies].map((company, index) => (
               <div
                 key={index}
-                className="text-2xl font-bold text-gray-300 hover:text-gray-500 transition-colors whitespace-nowrap"
+                className="flex items-center gap-2 text-2xl font-bold text-gray-500 whitespace-nowrap"
               >
+                <Image
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  width={24}
+                  height={24}
+                  className="opacity-60"
+                  unoptimized
+                />
                 {company.abbr}
               </div>
             ))}
@@ -36,17 +45,16 @@ export function LogoMarquee() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-start gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
             size="lg"
-            className="bg-gray-900 text-white hover:bg-gray-800 px-8 rounded-full"
+            className="bg-white text-black border border-gray-300 hover:bg-gray-50 px-8 rounded-none"
           >
             Sign up for free
           </Button>
           <Button
             size="lg"
-            variant="outline"
-            className="border-gray-300 text-gray-900 hover:bg-gray-100 px-8 rounded-full"
+            className="bg-black text-white hover:bg-gray-900 px-8 rounded-none"
           >
             Contact Sales
           </Button>
