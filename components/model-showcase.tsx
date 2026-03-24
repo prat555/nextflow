@@ -51,7 +51,7 @@ export function ModelShowcase() {
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           {"The industry's best "}
-          <span className="relative inline-block min-w-[140px]">
+          <span className="relative inline-block">
             <span
               className={`inline-block transition-all duration-300 ${
                 isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
