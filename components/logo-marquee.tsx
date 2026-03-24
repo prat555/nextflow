@@ -1,14 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 
 const companies = [
-  { name: "Lego", abbr: "LEGO", logo: "https://cdn.worldvectorlogo.com/logos/lego-4.svg" },
-  { name: "Samsung", abbr: "SAMSUNG", logo: "https://cdn.worldvectorlogo.com/logos/samsung-4.svg" },
-  { name: "Nike", abbr: "NIKE", logo: "https://cdn.worldvectorlogo.com/logos/nike-4-1.svg" },
-  { name: "Microsoft", abbr: "MSFT", logo: "https://cdn.worldvectorlogo.com/logos/microsoft-6.svg" },
-  { name: "Shopify", abbr: "SHOPIFY", logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg" },
+  { name: "Lego" },
+  { name: "Samsung" },
+  { name: "Nike" },
+  { name: "Microsoft" },
+  { name: "Shopify" },
 ]
 
 export function LogoMarquee() {
@@ -28,17 +27,9 @@ export function LogoMarquee() {
             {[...companies, ...companies].map((company, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 text-2xl font-bold text-gray-500 whitespace-nowrap"
+                className="text-lg font-bold text-gray-500 whitespace-nowrap"
               >
-                <Image
-                  src={company.logo}
-                  alt={`${company.name} logo`}
-                  width={24}
-                  height={24}
-                  className="opacity-60 grayscale w-auto h-auto"
-                  unoptimized
-                />
-                {company.abbr}
+                {company.name}
               </div>
             ))}
           </div>
@@ -47,14 +38,14 @@ export function LogoMarquee() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
-            size="lg"
-            className="bg-white text-black hover:bg-gray-50 px-8 rounded-none border-0 shadow-none"
+            size="sm"
+            className="bg-white text-black hover:bg-gray-50 px-6 rounded-none border-0 shadow-none"
           >
             Sign up for free
           </Button>
           <Button
-            size="lg"
-            className="bg-black text-white hover:bg-gray-900 px-8 rounded-md"
+            size="sm"
+            className="bg-black text-white hover:bg-gray-900 px-6 rounded-md"
           >
             Contact Sales
           </Button>
