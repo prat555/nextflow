@@ -49,7 +49,7 @@ export function ModelShowcase() {
       <div className="max-w-7xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          The industry&apos;s best{" "}
+          <span>The industry&apos;s best</span>{" "}
           <span
             className={`inline-block transition-all duration-500 ease-out ${
               isMounted && isAnimating 
@@ -58,8 +58,8 @@ export function ModelShowcase() {
             }`}
           >
             {rotatingWords[currentWordIndex]}
-          </span>
-          {" "}models.
+          </span>{" "}
+          <span>models.</span>
         </h2>
         <p className="text-xl text-gray-500 mb-12">In one subscription.</p>
 
@@ -89,54 +89,65 @@ export function ModelShowcase() {
         {/* Bento Grid */}
         <div className="grid grid-cols-6 gap-4 max-w-6xl mx-auto">
           {/* Row 1 */}
-          <div className="col-span-6 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-48 flex items-end relative overflow-hidden">
+          <div className="col-span-6 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-40 flex items-end relative overflow-hidden">
             <img src="https://s.krea.ai/light-streak.webp" alt="Light streak" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10">
               <p className="text-white text-xl md:text-2xl font-bold text-left">Industry-leading<br />inference speed</p>
             </div>
           </div>
-          <div className="col-span-3 md:col-span-2 bg-gray-100 rounded-3xl p-6 h-48 flex flex-col items-center justify-center">
+          <div className="col-span-3 md:col-span-2 bg-gray-100 rounded-3xl p-6 h-40 flex flex-col items-center justify-center">
             <p className="text-5xl md:text-6xl font-bold text-gray-900">22K</p>
             <p className="text-gray-500 text-sm mt-1">Pixels upscaling</p>
           </div>
-          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-6 h-48 flex flex-col items-center justify-center">
+          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-6 h-40 flex flex-col items-center justify-center">
             <p className="text-3xl md:text-4xl font-bold text-gray-900">Train</p>
             <p className="text-gray-500 text-xs text-center mt-1">Fine-tune models with your own data</p>
           </div>
+        </div>
 
-          {/* Row 2 */}
-          <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-64 flex flex-col justify-end relative overflow-hidden">
-            <img src="https://s.krea.ai/eye-macro.webp" alt="Eye macro" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="relative z-10">
-              <p className="text-4xl md:text-5xl font-bold text-white">4K</p>
-              <p className="text-white text-sm">Native image generation</p>
+        {/* Middle Section - 4K, Krea1, Do not train / Minimalist UI, 64+ */}
+        <div className="grid grid-cols-6 gap-4 max-w-6xl mx-auto mt-4">
+          {/* Left column - 4K and Minimalist UI stacked */}
+          <div className="col-span-6 md:col-span-2 flex flex-col gap-4">
+            <div className="bg-gray-200 rounded-3xl p-6 h-52 flex flex-col justify-end relative overflow-hidden">
+              <img src="https://s.krea.ai/eye-macro.webp" alt="Eye macro" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="relative z-10">
+                <p className="text-4xl md:text-5xl font-bold text-white">4K</p>
+                <p className="text-white text-sm">Native image generation</p>
+              </div>
+            </div>
+            <div className="bg-gray-200 rounded-3xl p-6 h-32 flex flex-col justify-end relative overflow-hidden">
+              <img src="https://s.krea.ai/minimalistBase.webp" alt="Minimalist UI" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="relative z-10">
+                <p className="text-xl font-bold text-white">Minimalist UI</p>
+              </div>
             </div>
           </div>
-          <div className="col-span-3 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-64 flex flex-col items-center justify-end relative overflow-hidden row-span-2">
+
+          {/* Center - Krea 1 */}
+          <div className="col-span-6 md:col-span-3 bg-gray-900 rounded-3xl p-6 flex flex-col items-center justify-end relative overflow-hidden h-[360px]">
             <img src="https://s.krea.ai/krea1-example.webp" alt="Krea 1 example" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10 text-center pb-4">
               <p className="text-4xl md:text-5xl font-bold text-white">Krea 1</p>
               <p className="text-gray-400 text-sm mt-2">Ultra-realistic flagship model</p>
             </div>
           </div>
-          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
-            <p className="text-xl font-bold text-gray-900">Do not train</p>
-            <p className="text-gray-500 text-xs text-center mt-1">Safely generate proprietary data</p>
-          </div>
 
-          {/* Row 2 continued */}
-          <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-32 flex flex-col justify-end relative overflow-hidden">
-            <img src="https://s.krea.ai/minimalistBase.webp" alt="Minimalist UI" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="relative z-10">
-              <p className="text-xl font-bold text-white">Minimalist UI</p>
+          {/* Right column - Do not train and 64+ stacked */}
+          <div className="col-span-6 md:col-span-1 flex flex-col gap-4">
+            <div className="bg-gray-100 rounded-3xl p-4 h-44 flex flex-col items-center justify-center">
+              <p className="text-xl font-bold text-gray-900">Do not train</p>
+              <p className="text-gray-500 text-xs text-center mt-1">Safely generate proprietary data</p>
+            </div>
+            <div className="bg-gray-100 rounded-3xl p-4 h-44 flex flex-col items-center justify-center">
+              <p className="text-4xl font-bold text-gray-900">64+</p>
+              <p className="text-gray-500 text-sm">Models</p>
             </div>
           </div>
-          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
-            <p className="text-4xl font-bold text-gray-900">64+</p>
-            <p className="text-gray-500 text-sm">Models</p>
-          </div>
+        </div>
 
-          {/* Row 3 */}
+        {/* Bottom Row */}
+        <div className="grid grid-cols-6 gap-4 max-w-6xl mx-auto mt-4">
           <div className="col-span-3 md:col-span-1 bg-gray-900 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
             <img src="https://s.krea.ai/asset-manager.webp" alt="Asset manager" className="absolute inset-0 w-full h-full object-cover" />
             <p className="relative z-10 text-white text-sm font-bold">Full-fledged asset<br />manager</p>
@@ -148,7 +159,7 @@ export function ModelShowcase() {
             </div>
             <p className="text-gray-500 text-xs text-center">Access the latest models directly on release day</p>
           </div>
-          <div className="col-span-2 md:col-span-1 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
+          <div className="col-span-2 md:col-span-1 bg-gray-900 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
             <img src="https://s.krea.ai/isometricPromptStyles.webp" alt="Styles" className="absolute inset-0 w-full h-full object-cover" />
             <p className="relative z-10 text-white text-2xl font-bold">1000+</p>
             <p className="relative z-10 text-white text-sm">styles</p>
