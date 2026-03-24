@@ -4,7 +4,8 @@ import { useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
-const CARD_GAP = 24 // px, matches gap-6
+const CARD_GAP = 48 // px, doubled spacing between cards
+const LEFT_PADDING = 32 // px, matches pl-8
 
 const cards = [
   {
@@ -80,12 +81,11 @@ export function WorkflowShowcase() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
-  // Card width = (containerWidth - 0.5 card peek - 3 gaps) / 3.5
-  // We show 3.5 cards: the 0.5 is a peek of the next card on the right
   const getCardWidth = () => {
     if (!scrollRef.current) return 0
     const containerWidth = scrollRef.current.offsetWidth
-    return (containerWidth - 3 * CARD_GAP) / 3.5
+    // Show 3.7 cards: slightly smaller cards, more peek on the right
+    return (containerWidth - LEFT_PADDING - 2.7 * CARD_GAP) / 3.7
   }
 
   const scroll = (dir: "left" | "right") => {
@@ -108,7 +108,8 @@ export function WorkflowShowcase() {
             scrollbarWidth: "none",
             msOverflowStyle: "none",
             scrollSnapType: "x mandatory",
-            paddingRight: "32px", // so last card has breathing room from edge
+            scrollPaddingLeft: LEFT_PADDING,
+            paddingRight: "32px",
           }}
         >
           {cards.map((card) => (
@@ -116,8 +117,7 @@ export function WorkflowShowcase() {
               key={card.id}
               className="relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group"
               style={{
-                // exactly 3.5 cards visible across the container width
-                width: "calc((100vw - 32px - 3 * 24px) / 3.5)",
+                width: `calc((100vw - ${LEFT_PADDING}px - 2.7 * ${CARD_GAP}px) / 3.7)`,
                 aspectRatio: "9/13",
                 scrollSnapAlign: "start",
               }}
