@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Zap, Image, Layers, Sparkles, Box, Palette, Check } from "lucide-react"
 
 const models = [
   { name: "Veo 3.1", logo: "V" },
@@ -14,15 +13,6 @@ const models = [
 ]
 
 const rotatingWords = ["Image", "Video", "3D", "Creative"]
-
-const features = [
-  { icon: Zap, text: "Industry-leading inference speed" },
-  { icon: Image, text: "22K Pixels upscaling" },
-  { icon: Layers, text: "Fine-tune models with your own data" },
-  { icon: Sparkles, text: "4K Native image generation" },
-  { icon: Box, text: "Ultra-realistic flagship model" },
-  { icon: Palette, text: "1000+ styles" },
-]
 
 export function ModelShowcase() {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -49,7 +39,7 @@ export function ModelShowcase() {
   useEffect(() => {
     const interval = setInterval(() => {
       setScrollPosition((prev) => prev + 1)
-    }, 30)
+    }, 50)
     return () => clearInterval(interval)
   }, [])
 
@@ -59,7 +49,7 @@ export function ModelShowcase() {
       <div className="max-w-7xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          <span>The industry&apos;s best</span>{" "}
+          {"The industry's best "}
           <span
             className={`inline-block transition-all duration-500 ease-out ${
               isMounted && isAnimating 
@@ -68,8 +58,8 @@ export function ModelShowcase() {
             }`}
           >
             {rotatingWords[currentWordIndex]}
-          </span>{" "}
-          <span>models.</span>
+          </span>
+          {" models."}
         </h2>
         <p className="text-xl text-gray-500 mb-12">In one subscription.</p>
 
@@ -96,40 +86,95 @@ export function ModelShowcase() {
           </div>
         </div>
 
-        {/* Features grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-200"
-            >
-              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
-                <feature.icon className="w-5 h-5 text-gray-900" />
-              </div>
-              <span className="text-sm text-gray-900">{feature.text}</span>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-6 gap-4 max-w-6xl mx-auto">
+          {/* Row 1 */}
+          <div className="col-span-6 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-48 flex items-end relative overflow-hidden">
+            <div className="relative z-10">
+              <p className="text-white text-xl md:text-2xl font-bold text-left">Industry-leading<br />inference speed</p>
             </div>
-          ))}
-        </div>
+            {/* Placeholder for image - you can add image here */}
+          </div>
+          <div className="col-span-3 md:col-span-2 bg-gray-100 rounded-3xl p-6 h-48 flex flex-col items-center justify-center">
+            <p className="text-5xl md:text-6xl font-bold text-gray-900">22K</p>
+            <p className="text-gray-500 text-sm mt-1">Pixels upscaling</p>
+          </div>
+          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-6 h-48 flex flex-col items-center justify-center">
+            <p className="text-3xl md:text-4xl font-bold text-gray-900">Train</p>
+            <p className="text-gray-500 text-xs text-center mt-1">Fine-tune models with your own data</p>
+          </div>
 
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 mb-2">64+</div>
-            <div className="text-sm text-gray-500">Models</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 mb-2 flex items-center justify-center gap-2">
-              <Check className="w-6 h-6 text-emerald-500" />
+          {/* Row 2 */}
+          <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-64 flex flex-col justify-end relative overflow-hidden">
+            <div className="relative z-10">
+              <p className="text-4xl md:text-5xl font-bold text-white">4K</p>
+              <p className="text-white text-sm">Native image generation</p>
             </div>
-            <div className="text-sm text-gray-500">Do not train</div>
+            {/* Placeholder for image - you can add image here */}
           </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 mb-2">1000+</div>
-            <div className="text-sm text-gray-500">Styles</div>
+          <div className="col-span-3 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-64 flex flex-col items-center justify-end relative overflow-hidden row-span-2">
+            <div className="relative z-10 text-center pb-4">
+              <p className="text-4xl md:text-5xl font-bold text-white">Krea 1</p>
+              <p className="text-gray-400 text-sm mt-2">Ultra-realistic flagship model</p>
+            </div>
+            {/* Placeholder for image - you can add image here */}
           </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-gray-900 mb-2">3s</div>
-            <div className="text-sm text-gray-500">Generation time</div>
+          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
+            <p className="text-xl font-bold text-gray-900">Do not train</p>
+            <p className="text-gray-500 text-xs text-center mt-1">Safely generate proprietary data</p>
+          </div>
+
+          {/* Row 2 continued */}
+          <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-32 flex flex-col justify-end relative overflow-hidden">
+            <div className="relative z-10">
+              <p className="text-xl font-bold text-white">Minimalist UI</p>
+            </div>
+            {/* Placeholder for image - you can add image here */}
+          </div>
+          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
+            <p className="text-4xl font-bold text-gray-900">64+</p>
+            <p className="text-gray-500 text-sm">Models</p>
+          </div>
+
+          {/* Row 3 */}
+          <div className="col-span-3 md:col-span-1 bg-gray-900 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
+            <p className="text-white text-sm font-bold">Full-fledged asset<br />manager</p>
+            {/* Placeholder for image - you can add image here */}
+          </div>
+          <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-48 flex flex-col items-center justify-between py-6">
+            <p className="text-lg font-semibold text-gray-900 italic">Bleeding Edge</p>
+            <div className="w-20 h-20 rounded-full border-2 border-gray-300 flex items-center justify-center">
+              <div className="w-1 h-8 bg-gray-400 origin-bottom -rotate-45"></div>
+            </div>
+            <p className="text-gray-500 text-xs text-center">Access the latest models directly on release day</p>
+          </div>
+          <div className="col-span-2 md:col-span-1 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
+            <p className="text-white text-2xl font-bold">1000+</p>
+            <p className="text-white text-sm">styles</p>
+            {/* Placeholder for image - you can add image here */}
+          </div>
+          <div className="col-span-2 md:col-span-1 bg-gray-200 rounded-3xl p-4 h-48 flex flex-col justify-end relative overflow-hidden">
+            <div className="relative z-10">
+              <p className="text-2xl font-bold text-white">Image</p>
+              <p className="text-2xl font-bold text-white">Editor</p>
+            </div>
+            {/* Placeholder for image - you can add image here */}
+          </div>
+          <div className="col-span-2 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-48 flex flex-col items-center justify-center">
+            <p className="text-lg font-semibold text-gray-900 mb-2">Lipsync</p>
+            <div className="flex items-end gap-1 h-12">
+              {[0.4, 0.7, 1, 0.8, 0.5, 0.9, 0.6].map((h, i) => (
+                <div key={i} className="w-2 bg-gray-400 rounded-full" style={{ height: `${h * 100}%` }}></div>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-3 md:col-span-1 flex flex-col gap-4">
+            <div className="bg-gray-900 rounded-3xl p-4 h-[88px] flex items-center justify-center relative overflow-hidden">
+              <p className="text-white text-lg font-semibold">Realtime Canvas</p>
+            </div>
+            <div className="bg-gray-100 rounded-3xl p-4 h-[88px] flex items-center justify-center">
+              <p className="text-gray-900 text-lg font-semibold">Text to 3D</p>
+            </div>
           </div>
         </div>
       </div>
