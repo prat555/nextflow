@@ -49,7 +49,7 @@ export function ModelShowcase() {
       <div className="max-w-7xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          {"The industry's best "}
+          The industry&apos;s best{" "}
           <span
             className={`inline-block transition-all duration-500 ease-out ${
               isMounted && isAnimating 
@@ -59,7 +59,7 @@ export function ModelShowcase() {
           >
             {rotatingWords[currentWordIndex]}
           </span>
-          {" models."}
+          {" "}models.
         </h2>
         <p className="text-xl text-gray-500 mb-12">In one subscription.</p>
 
@@ -90,10 +90,10 @@ export function ModelShowcase() {
         <div className="grid grid-cols-6 gap-4 max-w-6xl mx-auto">
           {/* Row 1 */}
           <div className="col-span-6 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-48 flex items-end relative overflow-hidden">
+            <img src="https://s.krea.ai/light-streak.webp" alt="Light streak" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10">
               <p className="text-white text-xl md:text-2xl font-bold text-left">Industry-leading<br />inference speed</p>
             </div>
-            {/* Placeholder for image - you can add image here */}
           </div>
           <div className="col-span-3 md:col-span-2 bg-gray-100 rounded-3xl p-6 h-48 flex flex-col items-center justify-center">
             <p className="text-5xl md:text-6xl font-bold text-gray-900">22K</p>
@@ -106,18 +106,18 @@ export function ModelShowcase() {
 
           {/* Row 2 */}
           <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-64 flex flex-col justify-end relative overflow-hidden">
+            <img src="https://s.krea.ai/eye-macro.webp" alt="Eye macro" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10">
               <p className="text-4xl md:text-5xl font-bold text-white">4K</p>
               <p className="text-white text-sm">Native image generation</p>
             </div>
-            {/* Placeholder for image - you can add image here */}
           </div>
           <div className="col-span-3 md:col-span-3 bg-gray-900 rounded-3xl p-6 h-64 flex flex-col items-center justify-end relative overflow-hidden row-span-2">
+            <img src="https://s.krea.ai/krea1-example.webp" alt="Krea 1 example" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10 text-center pb-4">
               <p className="text-4xl md:text-5xl font-bold text-white">Krea 1</p>
               <p className="text-gray-400 text-sm mt-2">Ultra-realistic flagship model</p>
             </div>
-            {/* Placeholder for image - you can add image here */}
           </div>
           <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
             <p className="text-xl font-bold text-gray-900">Do not train</p>
@@ -126,10 +126,10 @@ export function ModelShowcase() {
 
           {/* Row 2 continued */}
           <div className="col-span-3 md:col-span-2 bg-gray-200 rounded-3xl p-6 h-32 flex flex-col justify-end relative overflow-hidden">
+            <img src="https://s.krea.ai/minimalistBase.webp" alt="Minimalist UI" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10">
               <p className="text-xl font-bold text-white">Minimalist UI</p>
             </div>
-            {/* Placeholder for image - you can add image here */}
           </div>
           <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-32 flex flex-col items-center justify-center">
             <p className="text-4xl font-bold text-gray-900">64+</p>
@@ -138,8 +138,8 @@ export function ModelShowcase() {
 
           {/* Row 3 */}
           <div className="col-span-3 md:col-span-1 bg-gray-900 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
-            <p className="text-white text-sm font-bold">Full-fledged asset<br />manager</p>
-            {/* Placeholder for image - you can add image here */}
+            <img src="https://s.krea.ai/asset-manager.webp" alt="Asset manager" className="absolute inset-0 w-full h-full object-cover" />
+            <p className="relative z-10 text-white text-sm font-bold">Full-fledged asset<br />manager</p>
           </div>
           <div className="col-span-3 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-48 flex flex-col items-center justify-between py-6">
             <p className="text-lg font-semibold text-gray-900 italic">Bleeding Edge</p>
@@ -149,22 +149,30 @@ export function ModelShowcase() {
             <p className="text-gray-500 text-xs text-center">Access the latest models directly on release day</p>
           </div>
           <div className="col-span-2 md:col-span-1 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl p-4 h-48 flex flex-col justify-start relative overflow-hidden">
-            <p className="text-white text-2xl font-bold">1000+</p>
-            <p className="text-white text-sm">styles</p>
-            {/* Placeholder for image - you can add image here */}
+            <img src="https://s.krea.ai/isometricPromptStyles.webp" alt="Styles" className="absolute inset-0 w-full h-full object-cover" />
+            <p className="relative z-10 text-white text-2xl font-bold">1000+</p>
+            <p className="relative z-10 text-white text-sm">styles</p>
           </div>
           <div className="col-span-2 md:col-span-1 bg-gray-200 rounded-3xl p-4 h-48 flex flex-col justify-end relative overflow-hidden">
+            <img src="https://s.krea.ai/isometricEditExample.webp" alt="Image Editor" className="absolute inset-0 w-full h-full object-cover" />
             <div className="relative z-10">
               <p className="text-2xl font-bold text-white">Image</p>
               <p className="text-2xl font-bold text-white">Editor</p>
             </div>
-            {/* Placeholder for image - you can add image here */}
           </div>
           <div className="col-span-2 md:col-span-1 bg-gray-100 rounded-3xl p-4 h-48 flex flex-col items-center justify-center">
-            <p className="text-lg font-semibold text-gray-900 mb-2">Lipsync</p>
-            <div className="flex items-end gap-1 h-12">
-              {[0.4, 0.7, 1, 0.8, 0.5, 0.9, 0.6].map((h, i) => (
-                <div key={i} className="w-2 bg-gray-400 rounded-full" style={{ height: `${h * 100}%` }}></div>
+            <p className="text-lg font-semibold text-gray-900 mb-4">Lipsync</p>
+            <div className="flex items-center gap-1 sm:gap-2 h-20 sm:h-28">
+              {[3, 5, 7, 4, 6, 3.1].map((totalHeight, i) => (
+                <div key={i} className="relative w-1.5 sm:w-2">
+                  <div 
+                    className="absolute top-1/2 w-full -translate-y-1/2 rounded-full"
+                    style={{ 
+                      height: `${totalHeight}rem`,
+                      background: 'linear-gradient(180deg, #474747 0%, #000000 100%)'
+                    }}
+                  />
+                </div>
               ))}
             </div>
           </div>
