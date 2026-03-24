@@ -4,15 +4,15 @@ import { useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
-const CARD_GAP = 16 // px, matches gap-4
+const CARD_GAP = 24 // px, matches gap-6
 
 const cards = [
   {
     id: 1,
     badge: "Krea 1",
     badgeIcon: (
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     label: "PROMPT",
@@ -65,8 +65,8 @@ const cards = [
     id: 5,
     badge: "Krea 1",
     badgeIcon: (
-      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     label: "PROMPT",
@@ -80,10 +80,10 @@ export function WorkflowShowcase() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
+  // Card width = (containerWidth - 0.5 card peek - 3 gaps) / 3.5
+  // We show 3.5 cards: the 0.5 is a peek of the next card on the right
   const getCardWidth = () => {
     if (!scrollRef.current) return 0
-    // 3.5 cards visible = container width split into 3.5 slots with gaps accounted for
-    // total width = 3.5 * cardWidth + 3 * gap  =>  cardWidth = (containerWidth - 3*gap) / 3.5
     const containerWidth = scrollRef.current.offsetWidth
     return (containerWidth - 3 * CARD_GAP) / 3.5
   }
@@ -97,21 +97,29 @@ export function WorkflowShowcase() {
 
   return (
     <section className="bg-white py-16 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 relative">
-        {/* Scrollable cards row */}
+      {/* Left padding only — right edge is flush so last card touches the scrollbar */}
+      <div className="pl-8 pr-0 relative">
+        {/* Scrollable row */}
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-4"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex overflow-x-auto"
+          style={{
+            gap: CARD_GAP,
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            scrollSnapType: "x mandatory",
+            paddingRight: "32px", // so last card has breathing room from edge
+          }}
         >
           {cards.map((card) => (
             <div
               key={card.id}
               className="relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer group"
               style={{
-                // show exactly 3.5 cards: width = (100% - 3*gap) / 3.5
-                width: "calc((100% - 48px) / 3.5)",
+                // exactly 3.5 cards visible across the container width
+                width: "calc((100vw - 32px - 3 * 24px) / 3.5)",
                 aspectRatio: "9/13",
+                scrollSnapAlign: "start",
               }}
               onMouseEnter={() => setHoveredId(card.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -122,42 +130,44 @@ export function WorkflowShowcase() {
                 alt={card.quote}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 80vw, 30vw"
+                sizes="30vw"
                 unoptimized
               />
 
               {/* Dark gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
-              {/* Badge top-left */}
-              <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5">
+              {/* Badge top-left — no background, just text+icon with drop shadow */}
+              <div className="absolute top-4 left-4 flex items-center gap-1.5 drop-shadow-lg">
                 {card.badgeIcon}
-                <span className="text-white text-sm font-medium">{card.badge}</span>
+                <span className="text-white text-sm font-semibold" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.8)" }}>
+                  {card.badge}
+                </span>
               </div>
 
               {/* Bottom content */}
               <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
                 <div
-                  className="transition-transform duration-300"
+                  className="transition-transform duration-300 ease-out"
                   style={{
                     transform: hoveredId === card.id ? "translateY(-8px)" : "translateY(0)",
                   }}
                 >
-                  <p className="text-[11px] font-semibold tracking-widest text-white/60 uppercase mb-1.5">
+                  <p className="text-[10px] font-bold tracking-widest text-white/60 uppercase mb-1.5">
                     {card.label}
                   </p>
                   <p className="text-white font-bold text-xl leading-snug">{card.quote}</p>
                 </div>
 
-                {/* Generate button — appears on hover */}
+                {/* Generate button — appears on hover, rectangular */}
                 <div
                   className="transition-all duration-300 overflow-hidden"
                   style={{
-                    maxHeight: hoveredId === card.id ? "48px" : "0px",
+                    maxHeight: hoveredId === card.id ? "56px" : "0px",
                     opacity: hoveredId === card.id ? 1 : 0,
                   }}
                 >
-                  <button className="bg-[#1c1c1e] hover:bg-[#2a2a2a] text-white text-sm font-medium px-5 py-2.5 rounded-full transition-colors whitespace-nowrap">
+                  <button className="bg-[#1c1c1e] hover:bg-[#2a2a2a] text-white text-sm font-medium px-5 py-2.5 rounded-lg transition-colors whitespace-nowrap">
                     {card.buttonLabel}
                   </button>
                 </div>
@@ -166,8 +176,8 @@ export function WorkflowShowcase() {
           ))}
         </div>
 
-        {/* Nav arrows */}
-        <div className="flex justify-end gap-2 mt-4">
+        {/* Nav arrows — bottom right inside padded wrapper */}
+        <div className="flex justify-end gap-2 mt-5 pr-8">
           <button
             onClick={() => scroll("left")}
             className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors"
