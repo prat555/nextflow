@@ -129,6 +129,7 @@ export function WorkflowShowcase() {
                 src={card.image}
                 alt={card.quote}
                 fill
+                priority={card.id === 1}
                 loading={card.id === 1 ? "eager" : "lazy"}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="30vw"

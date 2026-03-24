@@ -14,12 +14,12 @@ export function LogoMarquee() {
   return (
     <section className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 text-left">
+        <p className="text-sm text-gray-400 mb-2 text-left">
           A tool suite for pros and beginners alike
-        </h2>
-        <p className="text-lg text-gray-500 mb-12 text-left">
-          Krea powers millions of creatives, enterprises, and everyday people.
         </p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-12 text-left">
+          Krea powers millions of creatives, enterprises, and everyday people.
+        </h2>
 
         {/* Logo scroll */}
         <div className="relative overflow-hidden mb-12">
