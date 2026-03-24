@@ -3,7 +3,7 @@ import { UserRound, ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="bg-[#0a0a0a] flex flex-col items-center pt-24 pb-0 px-4 overflow-hidden">
+    <section className="bg-black flex flex-col items-center pt-24 pb-16 px-4 overflow-hidden">
       {/* Text content */}
       <div className="text-center max-w-4xl mx-auto">
         {/* Main headline */}
@@ -38,7 +38,10 @@ export function Hero() {
 
       {/* Demo placeholder */}
       <div className="w-full max-w-5xl mx-auto mt-14 px-4">
-        <div className="w-full h-[320px] sm:h-[400px] bg-[#161616] rounded-2xl" />
+        <div className="w-full h-[320px] sm:h-[420px] bg-[#111111] rounded-2xl border border-[#222222]" />
+        <p className="text-center text-[13px] text-[#666666] mt-4">
+          Workflow showing image generation, video animation, asset management, and video upscaling in Krea.
+        </p>
       </div>
     </section>
   )
