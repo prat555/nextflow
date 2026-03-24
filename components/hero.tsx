@@ -3,7 +3,12 @@ import { UserRound, ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="bg-black flex flex-col items-center pt-24 pb-16 px-4 overflow-hidden">
+    <section
+      className="flex flex-col items-center pt-24 pb-16 px-4 overflow-hidden"
+      style={{
+        background: "radial-gradient(ellipse 80% 60% at 50% 0%, #1a1a2e 0%, #0d0d14 40%, #000000 100%)",
+      }}
+    >
       {/* Text content */}
       <div className="text-center max-w-4xl mx-auto">
         {/* Main headline */}
