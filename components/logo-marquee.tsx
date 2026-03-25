@@ -1,16 +1,26 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 const companies = [
-  { name: "Lego", abbr: "LEGO" },
-  { name: "Samsung", abbr: "SAMSUNG" },
-  { name: "Nike", abbr: "NIKE" },
-  { name: "Microsoft", abbr: "MSFT" },
-  { name: "Shopify", abbr: "SHOPIFY" },
+  { name: "Lego", logo: "L" },
+  { name: "Samsung", logo: "S" },
+  { name: "Nike", logo: "N" },
+  { name: "Microsoft", logo: "M" },
+  { name: "Shopify", logo: "S" },
 ]
 
 export function LogoMarquee() {
+  const [scrollPosition, setScrollPosition] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setScrollPosition((prev) => prev + 1)
+    }, 50)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -22,31 +32,39 @@ export function LogoMarquee() {
         </h2>
 
         {/* Logo scroll */}
-        <div className="relative overflow-hidden mb-12">
-          <div className="flex animate-marquee gap-16 items-center justify-center">
-            {[...companies, ...companies].map((company, index) => (
+        <div className="relative mb-8 overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+          
+          <div
+            className="flex gap-8 transition-transform duration-100"
+            style={{ transform: `translateX(-${scrollPosition * 2}px)` }}
+          >
+            {[...companies, ...companies, ...companies, ...companies].map((company, index) => (
               <div
                 key={index}
-                className="text-2xl font-bold text-gray-300 hover:text-gray-500 transition-colors whitespace-nowrap"
+                className="flex items-center gap-3 px-6 py-3 rounded-full bg-transparent whitespace-nowrap"
               >
-                {company.abbr}
+                <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center font-bold text-gray-500">
+                  {company.logo}
+                </div>
+                <span className="text-gray-500 font-medium">{company.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-start gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
-            size="lg"
-            className="bg-gray-900 text-white hover:bg-gray-800 px-8 rounded-full"
+            size="sm"
+            className="bg-white text-black hover:bg-gray-50 px-6 rounded-none border-0 shadow-none"
           >
             Sign up for free
           </Button>
           <Button
-            size="lg"
-            variant="outline"
-            className="border-gray-300 text-gray-900 hover:bg-gray-100 px-8 rounded-full"
+            size="sm"
+            className="bg-black text-white hover:bg-gray-900 px-6 rounded-md"
           >
             Contact Sales
           </Button>

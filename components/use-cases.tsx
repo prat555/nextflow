@@ -69,11 +69,11 @@ export function UseCases() {
     <section className="py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <p className="text-sm text-gray-500 uppercase tracking-wider mb-4">
+        <div className="text-left mb-16">
+          <p className="text-lg font-bold text-gray-500 mb-2">
             Use cases
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 text-balance">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-balance">
             Generate or edit high quality images, videos, and 3D objects with AI
           </h2>
         </div>
