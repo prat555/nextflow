@@ -68,18 +68,17 @@ export function DashboardSidebar() {
         {mainNav.map((item) => {
           const isActive = pathname === item.href
           return (
-            <Link
+            <button
               key={item.name}
-              href={item.href}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full ${
                 isActive
                   ? "bg-[#1a1a1a] text-white"
                   : "text-gray-400 hover:bg-[#1a1a1a] hover:text-white"
-              }`}
+              } ${collapsed ? "justify-center" : ""}`}
             >
-              <item.icon className={`w-4 h-4 flex-shrink-0 ${item.iconColor}`} />
+              <item.icon className={`flex-shrink-0 ${item.iconColor} ${collapsed ? "w-5 h-5" : "w-4 h-4"}`} />
               {!collapsed && <span className="text-sm">{item.name}</span>}
-            </Link>
+            </button>
           )
         })}
 
@@ -96,24 +95,23 @@ export function DashboardSidebar() {
             const isActive = pathname === item.href
             const IconComponent = item.icon
             return (
-              <Link
+              <button
                 key={item.name}
-                href={item.href}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full ${
                   isActive
                     ? "bg-[#1a1a1a] text-white"
                     : "text-gray-400 hover:bg-[#1a1a1a] hover:text-white"
-                }`}
+                } ${collapsed ? "justify-center" : ""}`}
               >
-                <div className={`w-5 h-5 rounded flex items-center justify-center ${item.bgColor}`}>
+                <div className={`rounded flex items-center justify-center ${item.bgColor} ${collapsed ? "w-6 h-6" : "w-5 h-5"}`}>
                   {typeof IconComponent === 'function' && IconComponent.name === '' ? (
                     <IconComponent />
                   ) : (
-                    <IconComponent className={`w-3 h-3 ${item.iconColor}`} />
+                    <IconComponent className={`${item.iconColor} ${collapsed ? "w-4 h-4" : "w-3 h-3"}`} />
                   )}
                 </div>
                 {!collapsed && <span className="text-sm">{item.name}</span>}
-              </Link>
+              </button>
             )
           })}
         </div>
