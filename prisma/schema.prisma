@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  clerkId      String        @unique
+  email        String?
+  name         String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  workflows    Workflow[]
+  workflowRuns WorkflowRun[]
+}
+
+model Workflow {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String        @default("Untitled")
+  nodes     Json          @default("[]")
+  edges     Json          @default("[]")
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  runs      WorkflowRun[]
+
+  @@index([userId])
+}
+
+model WorkflowRun {
+  id          String     @id @default(cuid())
+  workflowId String
+  workflow    Workflow   @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  userId     String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status      String     @default("running")
+  scope       String     @default("full")
+  durationMs  Int        @default(0)
+  error       String?
+  startedAt   DateTime   @default(now())
+  completedAt DateTime?
+  nodeRuns    NodeRun[]
+
+  @@index([workflowId])
+  @@index([userId])
+}
+
+model NodeRun {
+  id            String      @id @default(cuid())
+  runId         String
+  run           WorkflowRun @relation(fields: [runId], references: [id], onDelete: Cascade)
+  nodeId        String
+  nodeType      String
+  nodeName      String
+  status        String      @default("running")
+  input         Json?
+  output        Json?
+  error         String?
+  outputPreview String?
+  durationMs    Int         @default(0)
+
+  @@index([runId])
+}
